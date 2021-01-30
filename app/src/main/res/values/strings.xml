@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Rootstrap Interview</string>
+    <string name="error_401">Unauthorized</string>
+    <string name="error_403">Access to resource is forbidden</string>
+    <string name="error_404">Resource not found</string>
+    <string name="error_500">Internal server error</string>
+    <string name="error_502">Bad Gateway</string>
+    <string name="error_301">Resource has been removed permanently</string>
+    <string name="error_302">Resource moved, but has been found</string>
+    <string name="error_generic">There is an error connecting to the service</string>
+    <string name="error_timeout">Time Out</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="warning">Atencion</string>
+    <string name="error_fetching_info">Error al recibir informacion</string>
+
 </resources>
