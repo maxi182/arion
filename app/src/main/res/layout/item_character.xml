@@ -4,8 +4,8 @@
     android:id="@+id/content_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/general_margin_small"
     android:background="@color/colorPrimary"
+    android:layout_margin="@dimen/general_margin_small"
     android:elevation="2dip"
     android:gravity="center_vertical"
     app:cardCornerRadius="8dp">
@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/img_character"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_weight=".1"
             android:padding="@dimen/general_margin_small" />

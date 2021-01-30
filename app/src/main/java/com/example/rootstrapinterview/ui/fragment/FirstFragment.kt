@@ -1,5 +1,4 @@
-package com.test.arion.ui.fragment
-
+import BaseFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rootstrapinterview.R
 import com.example.rootstrapinterview.data.model.characters.Character
 import com.example.rootstrapinterview.ui.adapter.CharactersAdapter
@@ -18,24 +16,16 @@ import kotlinx.android.synthetic.main.fragment_characters.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class FirstFragment : Fragment(), CharactersAdapter.OnItemClickListener {
+class FirstFragment : BaseFragment(), CharactersAdapter.OnItemClickListener {
 
     private val charactersListViewModel by viewModel<CharactersListViewModel>()
     private var characterList = ArrayList<Any>()
     lateinit var characterAdapter: CharactersAdapter
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_characters, container, false)
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override val layoutResource: Int
+        get() = R.layout.fragment_characters
 
+    override fun setupFragment(savedInstanceState: Bundle?) {
         setupRecyclerView()
         setupObservers()
         charactersListViewModel.fetchCharacters()
@@ -48,6 +38,13 @@ class FirstFragment : Fragment(), CharactersAdapter.OnItemClickListener {
                 clearList()
                 characterList?.addAll(characters.charactersList)
                 characterAdapter?.notifyDataSetChanged()
+
+            })
+
+        charactersListViewModel.errorMessage.observe(
+            viewLifecycleOwner,
+            Observer { error ->
+                showSnackBar(root_view, getString(error))
 
             })
     }
@@ -70,8 +67,8 @@ class FirstFragment : Fragment(), CharactersAdapter.OnItemClickListener {
     }
 
     override fun onItemSelected(character: Character) {
-        val characterBundle = Bundle()
-        characterBundle.putParcelable("nameArg", character)
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, characterBundle)
+
+        val actions = FirstFragmentDirections.actionFirstFragmentToSecondFragment(character)
+        findNavController().navigate(actions)
     }
 }

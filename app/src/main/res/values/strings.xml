@@ -16,5 +16,4 @@
     <string name="cancel">Cancelar</string>
     <string name="warning">Atencion</string>
     <string name="error_fetching_info">Error al recibir informacion</string>
-
 </resources>

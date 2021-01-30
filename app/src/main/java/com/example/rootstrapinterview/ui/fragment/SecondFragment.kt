@@ -1,30 +1,34 @@
-package com.test.arion.ui.fragment
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
+import android.view.MenuItem
+import androidx.navigation.fragment.navArgs
 import com.example.rootstrapinterview.R
+import com.example.rootstrapinterview.extensions.loadImageBitmap
+import kotlinx.android.synthetic.main.fragment_detail.*
 
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
-class SecondFragment : Fragment() {
+class SecondFragment : BaseFragment() {
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+    private val args by navArgs<SecondFragmentArgs>()
+    override val layoutResource: Int
+        get() = R.layout.fragment_detail
+
+    override fun setupFragment(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        showDatails()
+            }
+
+    private fun showDatails() {
+        args?.let {
+            img_character?.loadImageBitmap(args?.currentCharacter?.image)
+            text_name?.setText(args?.currentCharacter?.name)
+            text_species?.setText(args?.currentCharacter?.species)
+        }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> activity?.onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
