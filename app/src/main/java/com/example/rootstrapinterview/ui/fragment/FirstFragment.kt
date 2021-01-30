@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rootstrapinterview.R
 import com.example.rootstrapinterview.data.model.characters.Character
@@ -38,14 +39,9 @@ class FirstFragment : Fragment(), CharactersAdapter.OnItemClickListener {
         setupRecyclerView()
         setupObservers()
         charactersListViewModel.fetchCharacters()
-
-//        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
     }
 
     private fun setupObservers() {
-
         charactersListViewModel.charactersDataFetched.observe(
             viewLifecycleOwner,
             Observer { characters ->
@@ -54,7 +50,6 @@ class FirstFragment : Fragment(), CharactersAdapter.OnItemClickListener {
                 characterAdapter?.notifyDataSetChanged()
 
             })
-        
     }
 
     private fun clearList() {
@@ -67,14 +62,16 @@ class FirstFragment : Fragment(), CharactersAdapter.OnItemClickListener {
         characterAdapter =
             CharactersAdapter(requireContext(), characterList, this)
         recycler_chracters?.apply {
-            layoutManager = LinearLayoutManager(this.context)
+            layoutManager = GridLayoutManager(this.context, 3)
             adapter = characterAdapter
         }
         characterAdapter?.notifyDataSetChanged()
 
     }
 
-    override fun onItemSelected(transaction: Character) {
-        //this go to nest fragment
+    override fun onItemSelected(character: Character) {
+        val characterBundle = Bundle()
+        characterBundle.putParcelable("nameArg", character)
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, characterBundle)
     }
 }

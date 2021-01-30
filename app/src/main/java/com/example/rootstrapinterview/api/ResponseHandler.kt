@@ -1,6 +1,6 @@
 
+package com.example.rootstrapinterview.api
 
-import com.example.rootstrapinterview.api.Resource
 import com.example.rootstrapinterview.extensions.ErrorCodes
 import com.example.rootstrapinterview.extensions.getHttpError
 import retrofit2.HttpException

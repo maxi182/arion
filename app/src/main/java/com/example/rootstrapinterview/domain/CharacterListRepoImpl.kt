@@ -1,9 +1,9 @@
 package com.example.rootstrapinterview.domain
 
-import ResponseHandler
+
 import com.example.rootstrapinterview.api.ApiEndpoints
 import com.example.rootstrapinterview.api.Resource
-import com.example.rootstrapinterview.data.model.characters.Character
+import com.example.rootstrapinterview.api.ResponseHandler
 import com.example.rootstrapinterview.data.model.characters.CharacterList
 
 /**

@@ -11,5 +11,5 @@ import org.koin.dsl.module
  */
 val CharacterListModule: Module = module {
     factory { CharacterListUseCase(get() as CharacterListRepoImpl) }
-    factory { CharacterListRepoImpl(get()) }
+    factory { CharacterListRepoImpl(get(), get()) }
 }

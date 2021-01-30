@@ -1,6 +1,8 @@
 package com.example.rootstrapinterview.data.di
 
+import com.example.rootstrapinterview.BuildConfig
 import com.example.rootstrapinterview.api.ApiEndpoints
+import com.example.rootstrapinterview.api.ResponseHandler
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -41,5 +43,7 @@ val NetworkModule = module {
     single {
         get<Retrofit>().create(ApiEndpoints::class.java)
     }
+
+    factory { ResponseHandler() }
 
 }

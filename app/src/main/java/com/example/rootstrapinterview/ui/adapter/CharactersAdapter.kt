@@ -49,7 +49,8 @@ class CharactersAdapter(
     inner class TransactionViewHolder(itemView: View) :
         BaseViewHolder<Character>(itemView) {
         override fun bind(item: Character, position: Int) {
-            itemView?.img_character.loadImageBitmap(item?.image)
+            itemView?.img_character.loadImageBitmap(item.image!!)
+            itemView.setOnClickListener { itemClickLister?.onItemSelected(item) }
         }
     }
 }
